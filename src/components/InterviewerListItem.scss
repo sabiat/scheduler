@@ -1,18 +1,26 @@
 @import "styles/mixins.scss";
 @import "styles/variables.scss";
 
+
+
 .interviewers {
+
   &__item {
     @include button-inactive--opacity;
-    font-size: 0;
     margin-right: 0.5rem;
 
+  span {
+    display: none;
+
+    &.interviewers__item--selected {
+      display: flex;
+    }
+  }
     &-image {
       border-radius: 16px;
     }
 
     &--selected {
-      font-size: initial;
       color: $dark-background;
       background-color: $white;
       border-radius: 16px;
