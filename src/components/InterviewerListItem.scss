@@ -4,7 +4,7 @@
 .interviewers {
   &__item {
     @include button-inactive--opacity;
-
+    font-size: 0;
     margin-right: 0.5rem;
 
     &-image {
@@ -12,6 +12,7 @@
     }
 
     &--selected {
+      font-size: initial;
       color: $dark-background;
       background-color: $white;
       border-radius: 16px;
