@@ -7,10 +7,11 @@ import Empty from "./Empty";
 import "components/Appointment/styles.scss";
 
 export default function Appointment(props) {
+  const { interview } = props
   return (
     <article className="appointment">
       <Header time={props.time} />
-      {props.interview ? <Show /> : <Empty />}
+      {props.interview ? <Show student={interview.student} interviewer={interview.interviewer} /> : <Empty />}
       
     </article>
   );
