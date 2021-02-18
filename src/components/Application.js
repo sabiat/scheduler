@@ -7,53 +7,6 @@ import { getAppointmentsForDay } from "helpers/selectors"
 
 import axios from "axios";
 
-// const appointments = [
-//   {
-//     id: 1,
-//     time: "12pm",
-//   },
-//   {
-//     id: 2,
-//     time: "1pm",
-//     interview: {
-//       student: "Lydia Miller-Jones",
-//       interviewer: {
-//         id: 1,
-//         name: "Sylvia Palmer",
-//         avatar: "https://i.imgur.com/LpaY82x.png",
-//       }
-//     }
-//   }, 
-//   {
-//     id: 3,
-//     time: "2pm"
-//   }, 
-//   {
-//     id: 4,
-//     time: "3pm",
-//     interview: {
-//       student: "Ashley Jones",
-//       interviewer: {
-//         id: 5,
-//         name: "Sven Jones",
-//         avatar: "https://i.imgur.com/twYrpay.jpg"
-//       }
-//     }
-//   },
-//   {
-//     id: 5, 
-//     time: "4pm",
-//     interview: {
-//       student: "Curious George",
-//       interviewer: {
-//         id: 3,
-//         name: "Mildred Nazir",
-//         avatar: "https://i.imgur.com/T2WwVfS.png"
-//       }
-//     }
-//   }
-// ];
-
 export default function Application(props) {
 
   const [state, setState] = useState({
@@ -62,10 +15,8 @@ export default function Application(props) {
     appointments: {}
   });
 
-  const dailyAppointments = [];
-
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
   const setDay = day => setState({ ...state, day });
-
 
   useEffect(() => {
     Promise.all([
