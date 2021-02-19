@@ -1,16 +1,10 @@
 export function getAppointmentsForDay(state, day) {
-  const appointmentsInfoArray = [];
-  const dayArray = state.days.filter(item => item.name === day);
-  if (dayArray.length > 0) {
-    const appointmentsArray = dayArray[0].appointments;
-    for (const appointment of appointmentsArray) {
-      appointmentsInfoArray.push(state.appointments[appointment]);
-    }
+  const dayToFind = state.days.find(item => item.name === day);
+  if (dayToFind) {
+    const appointments = dayToFind.appointments.map(appointment => state.appointments[appointment]);
+    return appointments
   }
-
-  return appointmentsInfoArray;
-
-
+  return [];
 }
 
 export function getInterviewersForDay(state, day) {
