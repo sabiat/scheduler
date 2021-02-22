@@ -23,7 +23,7 @@ export default function useApplicationData() {
   const setDay = day => setState({ ...state, day });
 
   function updateSpotsRemaining(cancel = false, add = false) {
-    const index = state.days.findIndex(item => item.name === day);
+    const index = state.days.findIndex(item => item.name === state.day);
     let spots = 0;
     if (add) {
       spots = state.days[index].spots - 1
@@ -35,7 +35,6 @@ export default function useApplicationData() {
       spots
     }
     const days = Object.values({...state.days, [index]: day})
-
     return days;
   }
 
@@ -73,6 +72,6 @@ export default function useApplicationData() {
     return axios.delete(`/api/appointments/${id}`)
       .then(() => setState({...state, appointments, days}))
   }
-  
+
   return { state, setDay, bookInterview, cancelInterview }
 }
