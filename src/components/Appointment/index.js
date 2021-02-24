@@ -9,9 +9,7 @@ import Confirm from "./Confirm";
 import Error from "./Error";
 
 import useVisualMode from '../../hooks/useVisualMode';
-
 import "components/Appointment/styles.scss";
-
 
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
