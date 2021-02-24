@@ -1,6 +1,6 @@
 import React from "react";
 import { getByText, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, waitForElementToBeRemoved } from "@testing-library/react";
-import { render, cleanup, waitForElement, fireEvent} from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent, prettyDOM} from "@testing-library/react";
 
 import Application from "components/Application";
 
@@ -46,4 +46,53 @@ describe("Application", () => {
     expect(getByText(dayToFind, "no spots remaining")).toBeInTheDocument();
 
   });
+  it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
+    const { container, debug } = render(<Application />);
+
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+
+    const appointments = getAllByTestId(container, "appointment");
+    const appointment = appointments.find(item => queryByText(item, "Archie Cohen"));
+
+    fireEvent.click(getByAltText(appointment, "Delete"));
+    
+    expect(getByText(appointment, "Are you sure you would like to delete?")).toBeInTheDocument();
+
+    fireEvent.click(getByText(appointment, "Confirm"));
+
+    expect(getByText(appointment, "Deleting")).toBeInTheDocument();
+
+    await waitForElement(() => getByAltText(appointment,"Add"));
+
+    const days = getAllByTestId(container, "day");
+    const dayToFind = days.find(day => queryByText(day, "Monday"));
+
+    expect(getByText(dayToFind, "2 spots remaining")).toBeInTheDocument();
+
+  });
+  it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
+
+    const { container, debug } = render(<Application />);
+
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+
+    const appointments = getAllByTestId(container, "appointment");
+    const appointment = appointments.find(item => queryByText(item, "Archie Cohen"));
+
+    fireEvent.click(getByAltText(appointment, "Edit"));
+    fireEvent.change(getByPlaceholderText(appointment, /enter student name/i), {
+      target: { value: "Lydia Miller-Jones" }
+    });
+
+    fireEvent.click(getByText(appointment, "Save"));
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
+
+    await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
+
+    const days = getAllByTestId(container, "day");
+    const dayToFind = days.find(day => queryByText(day, "Monday"));
+
+    expect(getByText(dayToFind, "1 spot remaining")).toBeInTheDocument();
+
+  })
 })
