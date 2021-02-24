@@ -10,11 +10,11 @@ export default function useVisualMode(initialMode) {
     } else {
       setHistory(prev => [...prev, newMode]);
     }
-  }
+  };
   function back() {
     if (history.length === 1) return;
     setHistory(prev => [...prev.slice(0, -1)]);
-  }
+  };
   return { mode:history[history.length - 1], transition, back };
 }
 

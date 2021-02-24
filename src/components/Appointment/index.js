@@ -24,7 +24,7 @@ export default function Appointment(props) {
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
-  )
+  );
 
   function save(name, interviewer) {
     const modeAtSave = mode;
@@ -36,14 +36,14 @@ export default function Appointment(props) {
     props.bookInterview(props.id, interview, modeAtSave)
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true))
-  }
+  };
 
   function deleteAppt() {
     transition(DELETING, true);
     props.cancelInterview(props.id)
       .then(() => transition(EMPTY))
       .catch(() => transition(ERROR_DELETE, true))
-  }
+  };
 
   return (
     <article className="appointment" data-testid="appointment">

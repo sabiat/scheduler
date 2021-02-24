@@ -26,17 +26,17 @@ export default function useApplicationData() {
     const index = state.days.findIndex(item => item.name === state.day);
     let spots = 0;
     if (add) {
-      spots = state.days[index].spots - 1
+      spots = state.days[index].spots - 1;
     } else if (cancel) {
-      spots = state.days[index].spots + 1
+      spots = state.days[index].spots + 1;
     }
     const day = {
       ...state.days[index],
       spots
-    }
-    const days = Object.values({...state.days, [index]: day})
+    };
+    const days = Object.values({...state.days, [index]: day});
     return days;
-  }
+  };
 
   function bookInterview(id, interview, mode) {
     const appointment = {
@@ -51,13 +51,13 @@ export default function useApplicationData() {
     return axios.put(`/api/appointments/${id}`, {interview})
       .then(() => {
         if (mode === "EDIT") {
-          setState(prev => ({...prev, appointments}))
+          setState(prev => ({...prev, appointments}));
         } else {
-          setState(prev => ({...prev, appointments, days}))
+          setState(prev => ({...prev, appointments, days}));
         }
       });
     
-  }
+  };
 
   function cancelInterview(id) {
     const appointment = {
@@ -71,7 +71,7 @@ export default function useApplicationData() {
     const days = updateSpotsRemaining(true, false);
     return axios.delete(`/api/appointments/${id}`)
       .then(() => setState({...state, appointments, days}))
-  }
+  };
 
   return { state, setDay, bookInterview, cancelInterview }
 }
