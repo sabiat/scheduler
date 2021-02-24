@@ -1,19 +1,20 @@
 # Interview Scheduler
 
-Scheduler is a single-page app built using React that allows users to book, edit and cancel appointments. Data is persisted by the API server using a PostgreSQL database. This app was built following the practices of Test Driven Development utilizing Jest tests throughout development.
+Scheduler is a single-page application (SPA) built using React that allows users to book, edit and cancel interviews. Data is persisted by the API server using a PostgreSQL database. Jest tests were used throughout development to follow the practices of Test Driven Development.
+
 
 ## Screenshots
 
-List of appointments on selected day:
+User can see all appointments on selected day:
 ![View of all appointments on selected day:](https://github.com/sabiat/scheduler/blob/master/docs/Schedule%20view.png?raw=true)
 
-Form with input field to create/edit appointments:
+User can input details to create/edit interviews:
 ![Form with input field to create/edit appointments:](https://github.com/sabiat/scheduler/blob/master/docs/Form%20view.png?raw=true)
 
-Confirmation before proceeding with deleting appointments:
+Confirmation message is shown before deleting appointments:
 ![Confirmation before proceeding with deleting appointments:](https://github.com/sabiat/scheduler/blob/master/docs/Confirmation%20view.png?raw=true)
 
-Status message shown during asynchronous operations (saving/deleting):
+Status message shown during asynchronous operations:
 ![Status message during asynchronous operations](https://github.com/sabiat/scheduler/blob/master/docs/Status%20View.png?raw=true)
 
 
