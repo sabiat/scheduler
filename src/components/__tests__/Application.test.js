@@ -2,7 +2,6 @@ import React from "react";
 import { getByText, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, waitForElementToBeRemoved } from "@testing-library/react";
 import { render, cleanup, waitForElement, fireEvent} from "@testing-library/react";
 
-
 import Application from "components/Application";
 
 afterEach(cleanup);
